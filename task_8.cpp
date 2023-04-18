@@ -2,6 +2,14 @@
 #include <math.h>
 using namespace std;
 
+/**
+ * У цьому коді функція order приймає елемент g та модуль n
+ * та повертає його порядок в групі G = {1, 2, ..., n-1}.
+ *  Функція is_generator перевіряє, чи є елемент a генератором мультиплікативної
+ * групи поля F_p, де p є простим числом. Вона використовує функцію order для
+ *  знаходження порядку k елемента a, а потім перевіряє, чи дорівнює k
+ * значенню ейлерової функції від p, тобто чи є a генератором поля
+ */
 class ModularN
 {
 private:
@@ -9,14 +17,14 @@ private:
 
 public:
     /**
-     * @param {int} n A system of long-term modular arithmetic modulo a prime n
+     * @param {int} n -  A system of long-term modular arithmetic modulo a prime n
      * */
     ModularN(const int &n)
     {
         this->N = n;
     }
 
-    /** @param {int} n value A number order of which is searched
+    /** @param {int} n -  value A number order of which is searched
      *  @details a^k = 1 (mod n)
      */
 
@@ -51,11 +59,14 @@ public:
         return this->order(n) == (this->N - 1);
     }
 };
+
 int main()
 {
     const int MODULE_BY_N = 7;
     ModularN mod = ModularN(MODULE_BY_N);
+
     cout << mod.isGenerator(3) << endl;
+
     for (int i = 1; i < MODULE_BY_N; i++)
     {
         cout << "order (" << i << " mod " << MODULE_BY_N << ") = " << mod.order(i) << endl;
